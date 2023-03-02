@@ -4,7 +4,7 @@
   "description": "Projeto teste trainee biopark",
   "main": "index.js",
   "scripts": {
-    "dev": "docker-compose up -d && npx prisma generate && npx prisma db push && nodemon",
+    "dev": "docker-compose up -d && npx prisma generate && npx prisma migrate dev && nodemon",
     "prepare": "husky install",
     "lint": "npx eslint . --cache",
     "pre-commit": "lint-staged"
