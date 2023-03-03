@@ -11,6 +11,12 @@ export const edit = async (building: Partial<Building>): Promise<Building> => {
     throw new HttpException(404, 'Building not registered or does not exist');
   }
 
+  const readExistingBuildingByAddress = await buildingRepository.readByAddress(<string>building.address?.toLowerCase());
+
+  if (readExistingBuilding.address !== building.address && readExistingBuildingByAddress) {
+    throw new HttpException(409, 'There is already a building registered at this address');
+  }
+
   const updatedbuilding = await buildingRepository.edit(<Building>building);
 
   return updatedbuilding;
