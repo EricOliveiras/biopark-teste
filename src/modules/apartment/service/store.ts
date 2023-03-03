@@ -14,7 +14,7 @@ export const store = async ({ buildingId, floor, number, rentAmount, squareMeter
     throw new HttpException(409, 'It is not possible to add more apartments to this building');
   }
 
-  const readExistingApartment = await apartamentRepository.readByFloorAndNumber(building_Id, <number>floor, <string>number);
+  const readExistingApartment = await apartamentRepository.readByNumber(building_Id, <string>number);
 
   if (readExistingApartment) {
     throw new HttpException(409, 'Apartment already registered');
