@@ -33,13 +33,10 @@ export const apartamentRepository = {
     });
   },
 
-  async readByFloorAndNumber(buildingId: string, floor: number, number: string): Promise<Apartment | null> {
+  async readByNumber(buildingId: string, number: string): Promise<Apartment | null> {
     return await db.apartment.findFirst({
       where: {
         AND: [
-          {
-            floor: floor
-          },
           {
             number: number
           },
