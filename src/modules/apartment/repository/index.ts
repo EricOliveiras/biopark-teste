@@ -15,15 +15,22 @@ export const apartamentRepository = {
   },
 
   async read(id: string): Promise<Apartment | null> {
-    return await db.apartment.findUnique({
+    return await db.apartment.findFirst({
       where: {
         id: id
+      },
+      include: {
+        Renter: true
       }
     });
   },
 
   async readAll(): Promise<Apartment[] | []> {
-    return await db.apartment.findMany();
+    return await db.apartment.findMany({
+      include: {
+        Renter: true
+      }
+    });
   },
 
   async readByFloorAndNumber(buildingId: string, floor: number, number: string): Promise<Apartment | null> {
