@@ -1,5 +1,6 @@
 import { body } from 'express-validator';
 import { messages } from '../errorMessages';
+import { HttpException } from '../../errors/HttpException';
 
 export const buildingValidator = {
   create: [
@@ -16,7 +17,13 @@ export const buildingValidator = {
     body('numberOfApartments')
       .exists().withMessage(messages.required)
       .notEmpty().withMessage(messages.empty)
-      .isInt().withMessage(messages.intValue)
+      .custom(value => {
+        if(!Number.isInteger(value)) {
+          throw new HttpException(400, `${messages.intValue}`);
+        }
+
+        return true;
+      })
   ],
 
   id: [
