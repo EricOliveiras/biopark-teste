@@ -17,8 +17,9 @@ export const removeRenter = async (apartmentId: string): Promise<Apartment> => {
   const {
     id,
     buildingId,
-    floor,
-    number,
+    rooms,
+    bathrooms,
+    parkingSpaces,
     locator,
     squareMeter,
     rentAmount
@@ -27,8 +28,9 @@ export const removeRenter = async (apartmentId: string): Promise<Apartment> => {
   return await edit({
     id,
     buildingId,
-    floor,
-    number,
+    rooms,
+    bathrooms,
+    parkingSpaces,
     locator,
     squareMeter,
     rentAmount,
