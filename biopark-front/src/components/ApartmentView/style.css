@@ -1,0 +1,76 @@
+.apartamentCardView {
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto;
+  width: 400px;
+  min-height: 500px;
+  display: flex;
+  margin-top: 100px;
+  position: relative;
+}
+
+.apartamentView {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+.apartamentView h2 {
+  margin-top: 0;
+}
+
+.apartamentView p {
+  max-width: 100%;
+  margin: 15px 0;
+}
+
+.apartamentView ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.apartamentView li {
+  margin-bottom: 5px;
+}
+
+.apartamentView li strong {
+  display: inline-block;
+  width: 100px;
+}
+
+.apartamentView button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  font-size: 23px;
+  justify-content: end;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.apartamentView button:hover {
+  background-color: transparent;
+  border: 3px solid #333;
+  color: #333;
+}
+
+a {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
