@@ -12,16 +12,18 @@ export const apartmentController = {
   async store(req: Request, res: Response) {
     const {
       buildingId,
-      floor,
-      number,
+      rooms,
+      bathrooms,
+      parkingSpaces,
       rentAmount,
       squareMeter
     }: Partial<Apartment> = req.body;
 
     const apartament = await store({
       buildingId,
-      floor,
-      number,
+      rooms,
+      bathrooms,
+      parkingSpaces,
       rentAmount,
       squareMeter
     });
