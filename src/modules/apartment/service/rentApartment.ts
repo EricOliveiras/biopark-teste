@@ -13,14 +13,15 @@ export const rentApartment = async (apartmentId: string, renter: Partial<Renter>
   }
 
   if (readExistingApartment.rented) {
-    throw new HttpException(404, 'Apartment is already rented');
+    throw new HttpException(409, 'Apartment is already rented');
   }
 
   const {
     id,
     buildingId,
-    floor,
-    number,
+    rooms,
+    bathrooms,
+    parkingSpaces,
     locator,
     squareMeter,
     rentAmount
@@ -39,8 +40,9 @@ export const rentApartment = async (apartmentId: string, renter: Partial<Renter>
     const updateApartment = await edit({
       id,
       buildingId,
-      floor,
-      number,
+      rooms,
+      bathrooms,
+      parkingSpaces,
       locator,
       squareMeter,
       rentAmount,
@@ -54,8 +56,9 @@ export const rentApartment = async (apartmentId: string, renter: Partial<Renter>
   return await edit({
     id,
     buildingId,
-    floor,
-    number,
+    rooms,
+    bathrooms,
+    parkingSpaces,
     locator,
     squareMeter,
     rentAmount,
