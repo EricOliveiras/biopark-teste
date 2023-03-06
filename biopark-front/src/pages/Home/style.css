@@ -1,0 +1,14 @@
+.home {
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.home p {
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+#add-building {
+  text-decoration: underline;
+}
