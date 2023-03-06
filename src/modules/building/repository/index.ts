@@ -19,8 +19,9 @@ export const buildingRepository = {
           select: {
             buildingId: true,
             id: true,
-            number: true,
-            floor: true,
+            rooms: true,
+            bathrooms: true,
+            parkingSpaces:true,
             locator: true,
             squareMeter: true,
             rented: true,
@@ -49,8 +50,9 @@ export const buildingRepository = {
           select: {
             buildingId: true,
             id: true,
-            number: true,
-            floor: true,
+            rooms: true,
+            bathrooms: true,
+            parkingSpaces:true,
             locator: true,
             squareMeter: true,
             rented: true,
