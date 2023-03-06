@@ -2,12 +2,13 @@ import { Apartment } from '@prisma/client';
 import { prisma as db } from '../../../prismaService';
 
 export const apartamentRepository = {
-  async store({ buildingId, floor, number, rentAmount, squareMeter }: Partial<Apartment>): Promise<Apartment> {
+  async store({ buildingId, rooms, bathrooms, parkingSpaces, rentAmount, squareMeter }: Partial<Apartment>): Promise<Apartment> {
     return await db.apartment.create({
       data: {
         buildingId: <string>buildingId,
-        floor: <number>floor,
-        number: <string>number,
+        rooms: <number>rooms,
+        bathrooms: <number>bathrooms,
+        parkingSpaces: <number>parkingSpaces,
         rentAmount: <number>rentAmount,
         squareMeter: <number>squareMeter
       }
@@ -20,7 +21,23 @@ export const apartamentRepository = {
         id: id
       },
       include: {
-        Renter: true
+        Renter: {
+          select: {
+            id: true,
+            fullname: true,
+            document: true,
+            email: true,
+            phoneNumber: true,
+          }
+        },
+        Building: {
+          select: {
+            id: true,
+            name: true,
+            address: true,
+            numberOfApartments: true,
+          }
+        }
       }
     });
   },
@@ -28,22 +45,23 @@ export const apartamentRepository = {
   async readAll(): Promise<Apartment[] | []> {
     return await db.apartment.findMany({
       include: {
-        Renter: true
-      }
-    });
-  },
-
-  async readByNumber(buildingId: string, number: string): Promise<Apartment | null> {
-    return await db.apartment.findFirst({
-      where: {
-        AND: [
-          {
-            number: number
-          },
-          {
-            buildingId: buildingId
+        Renter: {
+          select: {
+            id: true,
+            fullname: true,
+            document: true,
+            email: true,
+            phoneNumber: true,
           }
-        ]
+        },
+        Building: {
+          select: {
+            id: true,
+            name: true,
+            address: true,
+            numberOfApartments: true,
+          }
+        }
       }
     });
   },
@@ -52,6 +70,25 @@ export const apartamentRepository = {
     return await db.apartment.findMany({
       where: {
         rented: false
+      },
+      include: {
+        Renter: {
+          select: {
+            id: true,
+            fullname: true,
+            document: true,
+            email: true,
+            phoneNumber: true,
+          }
+        },
+        Building: {
+          select: {
+            id: true,
+            name: true,
+            address: true,
+            numberOfApartments: true,
+          }
+        }
       }
     });
   },
