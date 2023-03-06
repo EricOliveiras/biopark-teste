@@ -20,19 +20,20 @@ model Building {
 }
 
 model Apartment {
-  id          String   @id @unique @default(uuid())
-  floor       Int
-  number      String
-  rented      Boolean  @default(false)
-  locator     String   @default("BioPark")
-  squareMeter Int
-  rentAmount  Float
-  renterId    String?
-  Renter      Renter?  @relation(fields: [renterId], references: [id])
-  buildingId  String
-  Building    Building @relation(fields: [buildingId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            String   @id @unique @default(uuid())
+  rooms         Int
+  bathrooms     Int
+  parkingSpaces Int
+  rented        Boolean  @default(false)
+  locator       String   @default("BioPark")
+  squareMeter   Int
+  rentAmount    Float
+  renterId      String?
+  Renter        Renter?  @relation(fields: [renterId], references: [id])
+  buildingId    String
+  Building      Building @relation(fields: [buildingId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@map("apartments")
 }
