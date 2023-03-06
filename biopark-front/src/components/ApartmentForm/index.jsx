@@ -33,8 +33,6 @@ function ApartmentForm() {
       squareMeter: parseInt(squareMeter),
     });
 
-    console.log(response);
-
     if (response.status === 201) {
       setTimeout(() => {
         navigate(`/building/${id}`);
@@ -51,14 +49,14 @@ function ApartmentForm() {
           <input
             id="rooms"
             type="number"
+            min="1"
+            placeholder="0"
             {...register('rooms', { required: true, min: 1 })}
           />
-          {errors.rooms &&
-            errors.rooms.type === 'required' && (
+          {errors.rooms && errors.rooms.type === 'required' && (
             <span>Este campo é obrigatório</span>
           )}
-          {errors.rooms &&
-            errors.rooms.type === 'min' && (
+          {errors.rooms && errors.rooms.type === 'min' && (
             <span>O número mínimo de quartos é 1</span>
           )}
         </div>
@@ -67,14 +65,14 @@ function ApartmentForm() {
           <input
             id="bathrooms"
             type="number"
+            min="1"
+            placeholder="0"
             {...register('bathrooms', { required: true, min: 1 })}
           />
-          {errors.bathrooms &&
-            errors.bathrooms.type === 'required' && (
+          {errors.bathrooms && errors.bathrooms.type === 'required' && (
             <span>Este campo é obrigatório</span>
           )}
-          {errors.bathrooms &&
-            errors.bathrooms.type === 'min' && (
+          {errors.bathrooms && errors.bathrooms.type === 'min' && (
             <span>O número mínimo de banheiros é 1</span>
           )}
         </div>
@@ -83,25 +81,25 @@ function ApartmentForm() {
           <input
             id="parkingSpaces"
             type="number"
+            min="0"
+            placeholder="0"
             {...register('parkingSpaces')}
           />
-          {errors.parkingSpaces &&
-            errors.parkingSpaces.type === 'required' && (
+          {errors.parkingSpaces && errors.parkingSpaces.type === 'required' && (
             <span>Este campo é obrigatório</span>
           )}
-          {errors.parkingSpaces &&
-            errors.parkingSpaces.type === 'min' && (
-            <span>O número mínimo de vagas é 1</span>
+          {errors.parkingSpaces && errors.parkingSpaces.type === 'min' && (
+            <span>O número mínimo de vagas é 0</span>
           )}
         </div>
         <div className="form-input">
           <label htmlFor="rentAmount">Valor do aluguel</label>
           <input
             id="rentAmount"
-            {...register('rentAmount')}
+            placeholder="Ex: 1500"
+            {...register('rentAmount', { required: true })}
           />
-          {errors.rentAmount &&
-            errors.rentAmount.type === 'required' && (
+          {errors.rentAmount && errors.rentAmount.type === 'required' && (
             <span>Este campo é obrigatório</span>
           )}
         </div>
@@ -110,11 +108,13 @@ function ApartmentForm() {
           <input
             id="squareMeter"
             type="number"
-            {...register('squareMeter')}
+            {...register('squareMeter', { min: 20 })}
           />
-          {errors.squareMeter &&
-            errors.squareMeter.type === 'required' && (
+          {errors.squareMeter && errors.squareMeter.type === 'required' && (
             <span>Este campo é obrigatório</span>
+          )}
+          {errors.squareMeter && errors.squareMeter.type === 'min' && (
+            <span>O tamanho mínimo em m² é 20</span>
           )}
         </div>
         <button type="submit">Registrar apartamento</button>

@@ -9,10 +9,7 @@ export const renterValidator = {
       .isString().withMessage(messages.stringValue),
 
     body('email')
-      .exists().withMessage(messages.required)
-      .notEmpty().withMessage(messages.empty)
-      .isString().withMessage(messages.stringValue)
-      .optional(),
+      .isEmail().withMessage(messages.email).optional(),
 
     body('document')
       .exists().withMessage(messages.required)

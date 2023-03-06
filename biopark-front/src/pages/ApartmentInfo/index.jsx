@@ -13,7 +13,6 @@ const ApartmentInfo = () => {
 
   async function getApartment() {
     const response = await apartmentAPI.read(id);
-    console.log(response);
     setApartment(response);
   }
 

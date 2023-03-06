@@ -11,6 +11,8 @@ function RentApartmentForm() {
 
   const { id } = useParams();
 
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
   const {
     register,
     handleSubmit,
@@ -41,17 +43,19 @@ function RentApartmentForm() {
           <label htmlFor="fullname">Nome completo</label>
           <input
             id="fullname"
-            {...register('fullname')}
+            placeholder="Ex: João da Silva"
+            {...register('fullname', { required: true })}
           />
           {errors.fullname && errors.fullname.type === 'required' && (
             <span>Este campo é obrigatório</span>
           )}
         </div>
         <div className="form-input">
-          <label htmlFor="document">Nº de documento</label>
+          <label htmlFor="document">Nº de documento RG/CPF</label>
           <input
             id="document"
-            {...register('document')}
+            placeholder="CPF ou RG"
+            {...register('document', { required: true })}
           />
           {errors.document && errors.document.type === 'required' && (
             <span>Este campo é obrigatório</span>
@@ -59,11 +63,23 @@ function RentApartmentForm() {
         </div>
         <div className="form-input">
           <label htmlFor="email">Email</label>
-          <input id="email" {...register('email')} />
+          <input
+            id="email"
+            {...register('email', {
+              pattern: emailRegex,
+            })}
+          />
+          {errors.email && <span>Formato de email inválido</span>}
         </div>
         <div className="form-input">
           <label htmlFor="phoneNumber">Telefone</label>
-          <input id="phoneNumber" {...register('phoneNumber')} />
+          <input
+            id="phoneNumber"
+            {...register('phoneNumber', { required: true })}
+          />
+          {errors.phoneNumber && errors.phoneNumber.type === 'required' && (
+            <span>Este campo é obrigatório</span>
+          )}
         </div>
         <button type="submit">Alugar apartamento</button>
       </form>

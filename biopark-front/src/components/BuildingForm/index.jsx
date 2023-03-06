@@ -36,12 +36,12 @@ function BuildingForm() {
         <h2>Adicionar edifício</h2>
         <div className="form-input">
           <label htmlFor="name">Nome do edifício</label>
-          <input id="name" {...register('name', { required: true })} />
+          <input id="name" placeholder="Ex: Ed. das Luzes" {...register('name', { required: true })} />
           {errors.name && <span>Este campo é obrigatório</span>}
         </div>
         <div className="form-input">
           <label htmlFor="address">Endereço</label>
-          <input id="address" {...register('address', { required: true })} />
+          <input id="address" placeholder="Ex: Rua das flores, 100" {...register('address', { required: true })} />
           {errors.address && <span>Este campo é obrigatório</span>}
         </div>
         <div className="form-input">
@@ -49,7 +49,9 @@ function BuildingForm() {
           <input
             id="numberOfApartments"
             type="number"
-            {...register('numberOfApartments', { required: true, min: 1 })}
+            min="2"
+            placeholder="0"
+            {...register('numberOfApartments', { required: true, min: 2 })}
           />
           {errors.numberOfApartments &&
             errors.numberOfApartments.type === 'required' && (
@@ -57,7 +59,7 @@ function BuildingForm() {
           )}
           {errors.numberOfApartments &&
             errors.numberOfApartments.type === 'min' && (
-            <span>O número mínimo de apartamentos é 1</span>
+            <span>O número mínimo de apartamentos é 2</span>
           )}
         </div>
 
