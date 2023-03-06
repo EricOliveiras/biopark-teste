@@ -9,12 +9,29 @@ export const apartmentValidator = {
       .notEmpty().withMessage(messages.empty)
       .isString().withMessage(messages.stringValue),
 
-    body('number')
+    body('rooms')
       .exists().withMessage(messages.required)
       .notEmpty().withMessage(messages.empty)
-      .isString().withMessage(messages.stringValue),
+      .custom(value => {
+        if(!Number.isInteger(value)) {
+          throw new HttpException(400, `${messages.intValue}`);
+        }
 
-    body('floor')
+        return true;
+      }),
+
+    body('bathrooms')
+      .exists().withMessage(messages.required)
+      .notEmpty().withMessage(messages.empty)
+      .custom(value => {
+        if(!Number.isInteger(value)) {
+          throw new HttpException(400, `${messages.intValue}`);
+        }
+
+        return true;
+      }),
+
+    body('parkingSpaces')
       .exists().withMessage(messages.required)
       .notEmpty().withMessage(messages.empty)
       .custom(value => {
@@ -49,12 +66,29 @@ export const apartmentValidator = {
   ],
 
   update: [
-    body('number')
+    body('rooms')
       .exists().withMessage(messages.required)
       .notEmpty().withMessage(messages.empty)
-      .isString().withMessage(messages.stringValue),
+      .custom(value => {
+        if(!Number.isInteger(value)) {
+          throw new HttpException(400, `${messages.intValue}`);
+        }
 
-    body('floor')
+        return true;
+      }),
+
+    body('bathrooms')
+      .exists().withMessage(messages.required)
+      .notEmpty().withMessage(messages.empty)
+      .custom(value => {
+        if(!Number.isInteger(value)) {
+          throw new HttpException(400, `${messages.intValue}`);
+        }
+
+        return true;
+      }),
+
+    body('parkingSpaces')
       .exists().withMessage(messages.required)
       .notEmpty().withMessage(messages.empty)
       .custom(value => {
