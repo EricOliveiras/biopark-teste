@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { apartmentController } from '../modules/apartment/controller/apartmentController';
 import { apartmentValidator } from '../validators/apartment';
 import { handleValidator } from '../validators/handleValidator';
-import { renterValidator } from '../validators/renter';
 
 export const apartmentRouter = Router();
 
@@ -14,7 +13,6 @@ apartmentRouter.post('/store',
 
 apartmentRouter.post('/rentapartment/:id',
   apartmentValidator.id,
-  renterValidator.create,
   handleValidator,
   apartmentController.rentApartment
 );
