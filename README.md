@@ -13,7 +13,7 @@ Você precisa destas dependencias instaladas:
 Clone o projeto
 
 ```bash
-  git clone https://github.com/EricOliveiras/teste-backend-bitx.git
+  git clone https://github.com/EricOliveiras/biopark-teste.git
 ```
 
 ### Rodando o back-end
