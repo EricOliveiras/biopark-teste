@@ -3,7 +3,7 @@ import { apartamentRepository } from '../repository';
 import { HttpException } from '../../../errors/HttpException';
 import { read } from '../../building/service/read';
 
-export const store = async ({ buildingId, floor, number, rentAmount, squareMeter }: Partial<Apartment>): Promise<Apartment> => {
+export const store = async ({ buildingId, rooms, bathrooms, parkingSpaces, rentAmount, squareMeter }: Partial<Apartment>): Promise<Apartment> => {
   const building_Id = <string>buildingId;
 
   const building = await read(building_Id);
@@ -14,16 +14,11 @@ export const store = async ({ buildingId, floor, number, rentAmount, squareMeter
     throw new HttpException(409, 'It is not possible to add more apartments to this building');
   }
 
-  const readExistingApartment = await apartamentRepository.readByNumber(building_Id, <string>number);
-
-  if (readExistingApartment) {
-    throw new HttpException(409, 'Apartment already registered');
-  }
-
   return await apartamentRepository.store({
     buildingId,
-    floor,
-    number,
+    rooms,
+    bathrooms,
+    parkingSpaces,
     rentAmount,
     squareMeter
   });
