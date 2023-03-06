@@ -1,0 +1,24 @@
+.home {
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.add-apt {
+  margin: 0 150px;
+  text-decoration: underline;
+  padding: 20px 0;
+}
+
+.add-apt-ex {
+  text-decoration: underline;
+}
+
+.add-apt:hover,
+.add-apt-ex {
+  cursor: pointer;
+}
+
+.apartment-card {
+  margin: 5px 10px;
+}
