@@ -1,16 +1,57 @@
-version: '3.8'
+version: '3'
 
 services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+      - prisma
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - '5173:5173'
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
   db:
-    image: postgres
-    container_name: biopark_db
+    image: postgres:latest
     restart: always
     ports:
-      - 54320:5432
-    env_file:
-      - .env
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: bioparkdb
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  prisma:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    command: npx prisma migrate deploy
+    environment:
+      - DATABASE_URL=postgresql://admin:admin@db:5432/bioparkdb?schema=public
+    networks:
+      - app-network
+
+networks:
+  app-network:
 
 volumes:
-  pgdata:
+  db-data:
