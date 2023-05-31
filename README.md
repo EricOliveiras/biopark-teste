@@ -16,49 +16,21 @@ Clone o projeto
   git clone https://github.com/EricOliveiras/biopark-teste.git
 ```
 
-### Rodando o back-end
+### Rodando o projeto
 
-Entre no diretório do projeto
+Entre no diretório do projeto:
 
 ```bash
   cd biopark-teste
 ```
 
-Instale as dependências
+Rode o comando:
 
 ```bash
-  npm install
+  docker-compose up --build -d
 ```
 
-Inicie o servidor
-
-```bash
-  npm run dev
-```
-
-> Note que o docker precisa está rodando na sua máquina.
-
-### Rodando o front-end
-
-Já dentro do diretório do projeto, abra um novo terminel e acesse o diretório do front
-
-```bash
-  cd biopark-front
-```
-
-Instale as dependências
-
-```bash
-  npm install
-```
-
-Inicie o servidor
-
-```bash
-  npm run dev
-```
-
-Acesse o link que irá aparecer no seu terminal
+Acesse: http://localhost:5173
 
 ## Stack utilizada
 
