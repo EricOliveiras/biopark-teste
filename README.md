@@ -1,4 +1,26 @@
 # Biopark Teste
+## Objetivo do projeto
+▸ O sistema deve permitir cadastrar
+edifícios e apartamentos.
+
+▸ O sistema deve permitir visualizar a
+disponibilidade dos apartamentos.
+
+▸ O sistema deve permitir alugar um
+apartamento para um locatário.
+
+▸ O sistema deve permitir visualizar o
+locatário do apartamento.
+
+▸ Cada apartamento do ecossistema
+pertence a um edifício.
+
+▸ Cada apartamento alugado deve
+ter um locatário.
+
+▸ Cada apartamento alugado deve
+ter o valor de aluguel mensal
+cadastrado.
 ## Utlizando o projeto
 
 ### Dependências globais
